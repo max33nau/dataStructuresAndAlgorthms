@@ -23,9 +23,9 @@ describe('test our array functions', function() {
       var testArray = [1,2,3,2,4,4];
       assert.deepEqual(unique(testArray), [1,2,3,4], 'did not pass');
     });
-    it('should return the total amount of times a specified letter returns in a array of words', function(){
+    it('should return the letter that occurs in the most words', function(){
       var testArray = ['foo', 'max', 'code', 'foobuzz', 'buzz'];
-      assert.deepEqual(frequency(testArray), 3, 'did not pass');
+      assert.deepEqual(frequency(testArray), 'o', 'did not pass');
     })
 
 });
@@ -84,10 +84,10 @@ function unique(array) {
 
 /* frequency */
 
-var x = ['max', 'book', 'foo', 'foobuzz', 'moose'];
 function frequency(array) {
   var stringOfWords = array.join();
   var seenInCurrentWord = [];
+  var arrayOfUniqueLetters = [];
   var objectOfLetters = new Object;
   for (var ii = 0; ii < stringOfWords.length; ii++) {
     var currentLetter = stringOfWords[ii];
@@ -98,11 +98,22 @@ function frequency(array) {
         if(objectOfLetters[currentLetter]) {
           objectOfLetters[currentLetter] += 1;
         } else {
+          myPush(arrayOfUniqueLetters, currentLetter);
           objectOfLetters[currentLetter] = 1;
         }
         seenInCurrentWord[currentLetter] = currentLetter;
       }
     }
   }
-  console.log(objectOfLetters);
+  var highestValue = objectOfLetters[arrayOfUniqueLetters[0]];
+  var mostFrequentLetter = '';
+  for(var jj = 0; jj < arrayOfUniqueLetters.length-1; jj++) {
+    var currentLetter = arrayOfUniqueLetters[jj];
+    var currentValue = objectOfLetters[currentLetter];
+    if(currentValue >= highestValue) {
+      highestValue = currentValue;
+      mostFrequentLetter = currentLetter;
+    }
+  }
+  return mostFrequentLetter;
 }
