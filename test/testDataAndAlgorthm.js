@@ -25,7 +25,7 @@ describe('test our array functions', function() {
       assert.deepEqual(arrayMethods.unique(testArray), [1,2,3,4], 'did not pass');
     });
     it('should return the letter that occurs in the most words', function(){
-      var testArray = ['foo', 'max', 'code', 'foobuzz', 'buzz'];
+      var testArray = ['foo', 'Max', 'code', 'foobuzz', 'buzz'];
       assert.deepEqual(arrayMethods.frequency(testArray), ['o'], 'did not pass');
     });
 
