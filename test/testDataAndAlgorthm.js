@@ -25,7 +25,7 @@ describe('test our array functions', function() {
     });
     it('should return the total amount of times a specified letter returns in a array of words', function(){
       var testArray = ['foo', 'max', 'code', 'foobuzz', 'buzz'];
-      assert.deepEqual(frequency(testArray,'o'), 3, 'did not pass');
+      assert.deepEqual(frequency(testArray), 3, 'did not pass');
     })
 
 });
@@ -83,22 +83,26 @@ function unique(array) {
 };
 
 /* frequency */
-function foundLetter(word, letter) {
-  var letterArray = word.split('');
-  for(var ii = 0; ii < letterArray.length; ii++) {
-    if(letterArray[ii] == letter) {
-      return true;
-    }
-  }
-  return false;
-}
 
-function frequency(array, specifiedLetter) {
-  var numberOfWordsWithLetter = 0;
-  for (var ii = 0; ii < array.length; ii++) {
-    if ( foundLetter(array[ii], specifiedLetter) ) {
-      numberOfWordsWithLetter++;
+var x = ['max', 'book', 'foo', 'foobuzz', 'moose'];
+function frequency(array) {
+  var stringOfWords = array.join();
+  var seenInCurrentWord = [];
+  var objectOfLetters = new Object;
+  for (var ii = 0; ii < stringOfWords.length; ii++) {
+    var currentLetter = stringOfWords[ii];
+    if (currentLetter == ',') {
+      seenInCurrentWord = [];
+    } else {
+      if (seenInCurrentWord[currentLetter] !== currentLetter) {
+        if(objectOfLetters[currentLetter]) {
+          objectOfLetters[currentLetter] += 1;
+        } else {
+          objectOfLetters[currentLetter] = 1;
+        }
+        seenInCurrentWord[currentLetter] = currentLetter;
+      }
     }
   }
-  return numberOfWordsWithLetter;
+  console.log(objectOfLetters);
 }
