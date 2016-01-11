@@ -83,7 +83,6 @@ function unique(array) {
 };
 
 /* frequency */
-
 function frequency(array) {
   var stringOfWords = array.join();
   var seenInCurrentWord = [];
@@ -107,7 +106,7 @@ function frequency(array) {
   }
   var highestValue = objectOfLetters[arrayOfUniqueLetters[0]];
   var mostFrequentLetter = '';
-  for(var jj = 0; jj < arrayOfUniqueLetters.length-1; jj++) {
+  for(var jj = 0; jj < arrayOfUniqueLetters.length; jj++) {
     var currentLetter = arrayOfUniqueLetters[jj];
     var currentValue = objectOfLetters[currentLetter];
     if(currentValue >= highestValue) {
